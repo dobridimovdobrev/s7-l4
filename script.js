@@ -25,10 +25,7 @@ function search() {
     }
 }
 
-// Carica hamsters by default
-window.addEventListener("DOMContentLoaded", function () {
-    loadImages("hamsters");
-});
+
 
 
 // Caricare immagini 
@@ -37,9 +34,9 @@ function loadImages(query) {
     imagesContainer.innerHTML = "";
 
     // Mostra caricamento
-    const loadingIndicator = document.getElementById("loadingIndicator");
-    loadingIndicator.classList.remove("d-none");
-    imagesContainer.appendChild(loadingIndicator);
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    loadingSpinner.classList.remove("d-none");
+    
 
     fetch("/api/search?query=" + query)
         .then(response => {
@@ -54,6 +51,9 @@ function loadImages(query) {
         .catch(error => {
             console.error("Errore durante il caricamento delle immagini:", error);
             showError(error.message);
+        })
+        .finally(() => {
+            loadingSpinner.classList.add("d-none");
         });
 }
 
@@ -99,8 +99,8 @@ function createImageCard(photo) {
         : photo.photographer;
 
     let description = photo.alt;
-    if (description.length > 40) {
-        description = description.substring(0, 40) + "...";
+    if (description.length > 30) {
+        description = description.substring(0, 30) + "...";
     }
 
     const img = column.querySelector("img");
@@ -171,3 +171,7 @@ function openImageDetails(id) {
     window.location.href = "details.html?id=" + id;
 }
 
+// Carica hamsters by default
+window.addEventListener("DOMContentLoaded", function () {
+    loadImages("hamsters");
+});
