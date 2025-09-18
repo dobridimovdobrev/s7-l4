@@ -47,7 +47,7 @@ function displayImageDetails(photo) {
     
     // Clona il template dei dettagli
     const detailsTemplate = document.getElementById("detailsTemplate").cloneNode(true);
-    detailsTemplate.style.display = "block";
+    detailsTemplate.classList.remove("d-none");
     
     // Aggiorna i contenuti
     detailsTemplate.querySelector("#detailImage").src = photo.src.large;
@@ -67,7 +67,7 @@ function showError(message) {
     
     // Clona il template di errore
     const errorTemplate = document.getElementById("errorTemplate").cloneNode(true);
-    errorTemplate.style.display = "block";
+    errorTemplate.classList.remove("d-none");
     errorTemplate.querySelector("#errorMessage").textContent = message;
     
     // Aggiungi al container
@@ -81,9 +81,7 @@ function goBack() {
 
 //  impostare il colore di sfondo basato sull'immagine (funzionalità extra)
 function setBackgroundColor(imageUrl) {
-    // Mantieni il colore di sfondo originale
-    document.body.style.backgroundColor = "var(--dark-bg)";
-    
+    // Nessuna modifica necessaria, il colore è già impostato nel CSS
 }
 
 // dettagli del immgaine al caricamento della pagina
