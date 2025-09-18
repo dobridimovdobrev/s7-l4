@@ -19,11 +19,17 @@ searchInput.addEventListener("keypress", (e) => {
 
 //  La ricerca
 function search() {
-    const query = searchInput.value.trim();
+    const query = searchInput.value;
     if (query) {
         loadImages(query);
     }
 }
+
+// Carica hamsters by default
+window.addEventListener("DOMContentLoaded", function () {
+    loadImages("hamsters");
+});
+
 
 // Caricare immagini 
 function loadImages(query) {
@@ -31,8 +37,8 @@ function loadImages(query) {
     imagesContainer.innerHTML = "";
 
     // Mostra caricamento
-    const loadingIndicator = document.getElementById("loadingIndicator").cloneNode(true);
-    loadingIndicator.style.display = "block";
+    const loadingIndicator = document.getElementById("loadingIndicator");
+    loadingIndicator.classList.remove("d-none");
     imagesContainer.appendChild(loadingIndicator);
 
     fetch("/api/search?query=" + query)
@@ -56,7 +62,7 @@ function showError(message) {
     imagesContainer.innerHTML = "";
 
     const errorTemplate = document.getElementById("errorTemplate").cloneNode(true);
-    errorTemplate.style.display = "block";
+    errorTemplate.classList.remove("d-none");
     errorTemplate.querySelector(".error-message").textContent =
         "Errore durante il caricamento delle immagini: " + message;
 
@@ -69,7 +75,7 @@ function displayImages(photos) {
 
     if (!photos || photos.length === 0) {
         const noResultsTemplate = document.getElementById("noResultsTemplate").cloneNode(true);
-        noResultsTemplate.style.display = "block";
+        noResultsTemplate.classList.remove("d-none");
         imagesContainer.appendChild(noResultsTemplate);
         return;
     }
@@ -85,7 +91,7 @@ function createImageCard(photo) {
     const template = document.getElementById("cardTemplate");
     const column = template.cloneNode(true);
     column.id = "card-" + photo.id;
-    column.style.display = "block";
+    column.classList.remove("d-none");
     column.classList.add("mb-4");
 
     const photographerName = photo.photographer.length > 15
@@ -136,7 +142,7 @@ function updateActiveButton(query) {
 function hideCard(id) {
     const card = document.getElementById("card-" + id);
     if (card) {
-        card.style.display = "none";
+        card.classList.add("d-none");
     }
 }
 
@@ -165,7 +171,3 @@ function openImageDetails(id) {
     window.location.href = "details.html?id=" + id;
 }
 
-// Carica hamsters by default
-window.addEventListener("DOMContentLoaded", function () {
-    loadImages("hamsters");
-});

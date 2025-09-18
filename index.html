@@ -29,7 +29,7 @@
                     </li>
                 </ul>
                 
-                <div class="input-group" style="max-width: 400px;">
+                <div class="input-group mw-400">
                     <input type="text" class="form-control" id="searchInput" placeholder="Cerca immagini...">
                     <button class="btn btn-outline-primary" type="button" id="searchButton">
                         <i class="fas fa-search me-2"></i>Cerca
@@ -39,7 +39,7 @@
         </div>
         
         <!-- card (hide) -->
-        <div id="cardTemplate" class="col-12 col-sm-6 col-md-4 col-lg-3" style="display: none;">
+        <div id="cardTemplate" class="col-12 col-sm-6 col-md-4 col-lg-3 d-none">
             <div class="card">
                 <div class="image-container">
                     <img src="" alt="">
@@ -63,8 +63,8 @@
             </div>
         </div>
         
-        <!-- indicatore di caricamento (hide) -->
-        <div id="loadingIndicator" class="col-12 text-center" style="display: none;">
+        <!-- spinner (hide) -->
+        <div id="loadingSpinner" class="col-12 text-center d-none">
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Caricamento...</span>
             </div>
@@ -72,7 +72,7 @@
         </div>
         
         <!-- messaggi di errore (hide) -->
-        <div id="errorTemplate" class="col-12 text-center" style="display: none;">
+        <div id="errorTemplate" class="col-12 text-center d-none">
             <div class="alert alert-danger" role="alert">
                 <i class="fas fa-exclamation-triangle me-2"></i>
                 <span class="error-message"></span>
@@ -80,7 +80,7 @@
         </div>
         
         <!-- nessun risultato (hide) -->
-        <div id="noResultsTemplate" class="col-12 text-center" style="display: none;">
+        <div id="noResultsTemplate" class="col-12 text-center d-none">
             <div class="alert alert-info" role="alert">
                 <i class="fas fa-info-circle me-2"></i>
                 Nessuna immagine trovata
@@ -101,7 +101,7 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-0">
-                    <img id="modalImage" class="img-fluid w-100" alt="" style="max-height: 70vh; object-fit: contain;">
+                    <img id="modalImage" class="img-fluid w-100 modal-img" alt="">
                 </div>
                 <div class="modal-footer border-0">
                     <a id="photographerLink" href="#" target="_blank" class="btn btn-outline-light">
