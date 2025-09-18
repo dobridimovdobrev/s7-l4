@@ -22,7 +22,7 @@ Documentazione URLSearchParams: https://developer.mozilla.org/en-US/docs/Web/API
 const loadHamstersBtn = document.getElementById("loadHamsters");
 const loadTigersBtn = document.getElementById("loadTigers");
 const loadHorsesBtn = document.getElementById("loadHorses");
-const searchField = document.getElementById("searchField");
+const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 const imagesContainer = document.getElementById("imagesContainer");
 
@@ -31,7 +31,7 @@ loadHamstersBtn.addEventListener("click", () => loadImages("hamsters"));
 loadTigersBtn.addEventListener("click", () => loadImages("tigers"));
 loadHorsesBtn.addEventListener("click", () => loadImages("horses"));
 searchButton.addEventListener("click", search);
-searchField.addEventListener("keypress", (e) => {
+searchInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         search();
     }
@@ -39,7 +39,7 @@ searchField.addEventListener("keypress", (e) => {
 
 //  gestire la ricerca
 function search() {
-    const query = searchField.value.trim();
+    const query = searchInput.value;
     if (query) {
         loadImages(query);
     }
